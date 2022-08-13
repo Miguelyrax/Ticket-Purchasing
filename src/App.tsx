@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useContext } from 'react';
 import './App.css';
+import {
+  Container,
+} from './components/';
+import { TicketContext } from './context/TicketContext';
+import { Tickets } from './screens/Tickets';
+import { Paynment } from './views/Paynment';
+import { ResumeComponent } from './views/ResumeComponent';
+
 
 function App() {
+  const {firstPage} = useContext(TicketContext);
+  console.log(firstPage)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {
+      firstPage
+      ?<Tickets></Tickets>
+      :<Container>
+        <div className='row'>
+          <Paynment/>
+          <ResumeComponent/>
+        </div>
+      </Container>
+    }
+    </>
+    
+    
   );
 }
 
